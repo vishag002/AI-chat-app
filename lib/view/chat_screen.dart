@@ -14,13 +14,11 @@ class _ChatScreenState extends State<ChatScreen> {
   //CHAT USERS
   ChatUser user = ChatUser(
     id: '1',
-    firstName: 'Charles',
-    lastName: 'Leclerc',
+    firstName: 'Dev',
   );
   ChatUser gemini = ChatUser(
     id: '2',
-    firstName: 'Charles',
-    lastName: 'Leclerc',
+    firstName: 'Gemini',
   );
   //list for messages
   List<ChatMessage> messages = <ChatMessage>[
@@ -30,6 +28,12 @@ class _ChatScreenState extends State<ChatScreen> {
       createdAt: DateTime.now(),
     )
   ];
+  //on send  function-- m is the variable
+  getdata(ChatMessage m) {
+    messages.insert(0, m);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -44,7 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
             width: 40,
             decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.white,
+                color: Colors.deepPurple.shade900,
                 image: DecorationImage(
                     image: NetworkImage(
                         "https://images.playground.com/9555cf8affc845c893baccee78d6c4fd.jpeg"))),
@@ -70,9 +74,7 @@ class _ChatScreenState extends State<ChatScreen> {
         child: DashChat(
           currentUser: user,
           onSend: (ChatMessage m) {
-            setState(() {
-              messages.insert(0, m);
-            });
+            getdata(m);
           },
           inputOptions: InputOptions(
               alwaysShowSend: true,
