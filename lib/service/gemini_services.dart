@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GeminiService {
   final Dio _dio = Dio();
-  final String _apiKey = 'AIzaSyB2LzROdoD_24QCl-SjqGin4opsKQz3Rv0';
+  final _apiKey = dotenv.env['GEMINI_API_KEY'];
+  //final geminiApiKey = dotenv.env['GEMINI_API_KEY'];
+
   final String _baseUrl =
       'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
